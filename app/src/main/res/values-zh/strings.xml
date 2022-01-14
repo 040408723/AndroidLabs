@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" >Android Lab1</string>
+    <string name="hello_message">ni hao</string>
+    <string name="ButtonText">i\'m a button</string>
+</resources>

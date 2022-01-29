@@ -5,32 +5,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button GreatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_linear);
+
+        //add onClickListener
+        GreatButton = findViewById(R.id.button1);
+        GreatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //toast message translate
+                String toastMessage=MainActivity.this.getResources().getString(R.string.toast_message);
+                Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_LONG).show();
+            }
+        });
 
 
-    //add onClickListener
-        //Button button = findViewById(R.id.button1);
-        //if (button != null) {
-            //button.setOnClickListener(new View.OnClickListener() {
-               // @Override
-                //public void onClick(View view) {
-                    //Toast.makeText(MainActivity.this, "Here is more information", Toast.LENGTH_LONG).show();
-                //}
+        //add a switch change listener
+        Switch switchBox = findViewById(R.id.switchbox1);
+        switchBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton cb, boolean b) {
+                switchBox.setChecked(b);
+                if (switchBox.isChecked()) {
+                    Snackbar.make(switchBox, "The switch is on", Snackbar.LENGTH_LONG).setAction("Undo", click -> cb.setChecked(!b)).show();
+                } else {
+                    Snackbar.make(switchBox, "The switch is off", Snackbar.LENGTH_LONG).setAction("Undo", click -> cb.setChecked(!b)).show();
+                }
+            }
 
-                //String toastMessage = MainActivity.this.getResources().getString(R.string.toast_message);
-           // });
-
-
-        //}
-
+        });
     }
 }

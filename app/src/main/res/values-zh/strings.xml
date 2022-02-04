@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" >Android Lab1</string>
-    <string name="hello_message">kan wo de GUI</string>
-    <string name="ButtonText">dian zhe li</string>
-    <string name="CheckBoxText">xuan zhe ge</string>
-    <string name="SwitchText">kai/guan</string>
-    <string name="Flag">zhongguo guoqi</string>
-    <string name="toast_message">geng duo xin xi</string>
-    <string name="show_text">zheli shuru</string>
+    <string name="app_name" >Android Lab3</string>
+    <string name="textEmail">shuru nide youjian dizhi</string>
+    <string name="show_text">youjian dizhi</string>
+    <string name="textPassword">shuru mima</string>
+    <string name="show_password">mima</string>
+    <string name="ButtonText">denglu</string>
 </resources>

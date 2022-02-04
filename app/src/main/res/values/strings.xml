@@ -1,10 +1,8 @@
 <resources>
-    <string name="app_name" >Android Lab2</string>
-    <string name="hello_message">Look at my GUI</string>
-    <string name="ButtonText">CLICK HERE</string>
-    <string name="CheckBoxText">Check this out!</string>
-    <string name="SwitchText">Switch on / off </string>
-    <string name="Flag">Flag of Canada</string>
-    <string name="toast_message">Here is more message</string>
-    <string name="show_text">Type Here</string>
+    <string name="app_name" >Android Lab3</string>
+    <string name="textEmail">Enter your email address: </string>
+    <string name="show_text">Type email Here</string>
+    <string name="textPassword">Type your password</string>
+    <string name="show_password">Type password here</string>
+    <string name="ButtonText">LOG IN</string>
 </resources>

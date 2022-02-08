@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name" >Android Lab3</string>
+    <string name="app_name">Android Lab3</string>
     <string name="textEmail">Enter your email address: </string>
     <string name="show_text">Type email Here</string>
     <string name="textPassword">Type your password</string>
     <string name="show_password">Type password here</string>
     <string name="ButtonText">LOG IN</string>
+    <string name="textName">Your name:</string>
+    <string name="show_name">Enter your name</string>
+    <string name="yourEmail">Your email:</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="picture">Your picture</string>
+    <string name="profile">Your profile</string>
+    <string name="pictureTaken">Click the button above to take a picture</string>
+
 </resources>

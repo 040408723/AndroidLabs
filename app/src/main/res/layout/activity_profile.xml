@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/profile1"
+        android:text="@string/profile"/>
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/textName"
+        android:layout_below="@id/profile1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/name2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:inputType="text"
+        android:layout_below="@id/name1"
+        android:text="@string/show_name"
+        tools:ignore="LabelFor"
+        android:autofillHints="your name" />
+
+    <TextView
+        android:id="@+id/email11"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/yourEmail"
+        android:layout_below="@id/name2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/email22"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:inputType="textEmailAddress"
+        android:text="@string/enterEmail"
+        android:layout_below="@id/email11"
+        tools:ignore="LabelFor"
+        android:autofillHints="your email" />
+
+    <TextView
+        android:id="@+id/picture1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/picture"
+        android:layout_below="@id/email22"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/imagebutton1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/picture1"
+
+        android:src="@android:drawable/picture_frame"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="@string/picture" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/imagebutton1"
+        android:text="@string/pictureTaken"
+        android:id="@+id/button22" />
+
+
+
+</RelativeLayout>

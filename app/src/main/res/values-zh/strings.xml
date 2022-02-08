@@ -6,4 +6,11 @@
     <string name="textPassword">shuru mima</string>
     <string name="show_password">mima</string>
     <string name="ButtonText">denglu</string>
+    <string name="textName">nide mingzhi:</string>
+    <string name="show_name">shuru nide mingzi</string>
+    <string name="yourEmail">nide youxiang:</string>
+    <string name="enterEmail">shuru nide youxiang</string>
+    <string name="picture">nide zhaopian</string>
+    <string name="profile">nide dangan</string>
+    <string name="pictureTaken">an shangmian de anniu pai zhaopian</string>
 </resources>

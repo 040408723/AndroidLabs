@@ -11,11 +11,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -30,8 +28,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Intent fromMain=getIntent();
-        String msg=fromMain.getStringExtra("EMAIL");
 
         ImageButton btn = findViewById(R.id.imagebutton1);
 
@@ -83,7 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
                 super.onDestroy();
                 Log.e(TAG, "onDestroy");
             }
-
 
 }
 

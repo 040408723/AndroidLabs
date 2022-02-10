@@ -61,23 +61,23 @@
 
         tools:visibility="visible" />
 
+
     <ImageButton
         android:id="@+id/imagebutton1"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/picture1"
 
+        android:contentDescription="@string/picture"
+        android:minHeight="100dp"
         android:src="@android:drawable/picture_frame"
-        tools:ignore="ImageContrastCheck"
-        android:contentDescription="@string/picture" />
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_below="@id/imagebutton1"
         android:text="@string/pictureTaken"
         android:id="@+id/button22" />
-
-
 
 </RelativeLayout>

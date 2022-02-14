@@ -10,7 +10,11 @@
     <string name="yourEmail">Your email:</string>
     <string name="enterEmail">Enter your email</string>
     <string name="picture">Your picture</string>
-    <string name="profile">Your profile1</string>
+    <string name="profile">Your profile</string>
     <string name="pictureTaken">Click the button above to take a picture</string>
+    <string name="button1">go to chat</string>
+    <string name="send">send</string>
+    <string name="textType">Type here</string>
+    <string name="receive">Receive</string>
 
 </resources>

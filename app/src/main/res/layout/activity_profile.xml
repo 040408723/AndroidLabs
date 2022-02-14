@@ -79,5 +79,11 @@
         android:layout_below="@id/imagebutton1"
         android:text="@string/pictureTaken"
         android:id="@+id/button22" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button1"
+        android:layout_below="@+id/button22"
+        android:id="@+id/button1"/>
 
 </RelativeLayout>

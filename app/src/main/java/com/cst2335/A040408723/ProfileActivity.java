@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,7 +36,11 @@ public class ProfileActivity extends AppCompatActivity {
                     myPictureTakerLauncher.launch(takePictureIntent);
                 }
             });
-
+        Button button=findViewById(R.id.button1);
+        button.setOnClickListener(v->{
+            Intent goToRoom=new Intent(ProfileActivity.this,ChatRoomActivity.class);
+            startActivity(goToRoom);
+        });
 
         Log.e(TAG, "onCreate");
 

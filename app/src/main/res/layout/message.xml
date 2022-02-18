@@ -3,37 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sendmessage"
-        android:text="send message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
     <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/send"
         android:src="@drawable/row_send"
-        app:layout_constraintRight_toRightOf="@+id/sendmessage"
-        android:contentDescription="send person" />
-
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/receive"
-        android:src="@drawable/row_receive"
-        app:layout_constraintLeft_toLeftOf="@+id/receivemessage"
-        android:contentDescription="receive person" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/sendmessage"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:paddingLeft="100dp"
+        android:textColor="#795548"
+        app:layout_constraintRight_toRightOf="@+id/send"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
         android:id="@+id/receivemessage"
-        android:text="receive message"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="100dp"
+        android:textColor="#455A64"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintRight_toRightOf="@+id/receive"/>
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/receive"
+        android:src="@drawable/row_receive"
+        android:paddingRight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendmessage"/>
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

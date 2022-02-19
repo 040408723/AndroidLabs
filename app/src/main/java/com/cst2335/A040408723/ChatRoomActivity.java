@@ -2,7 +2,7 @@ package com.cst2335.A040408723;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.annotation.SuppressLint;
 
@@ -15,7 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+
 
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button sendButton;
     Button receiveButton;
     EditText typeMessage;
-    RecyclerView rView;
+
 
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
@@ -114,6 +114,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             MessageViewHolder holder = new MessageViewHolder();
+           // Message message=messages.get(position);
             LayoutInflater inflater = getLayoutInflater();
             View newView = inflater.inflate(R.layout.message, parent, false);
             Message msg =new Message();

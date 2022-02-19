@@ -2,6 +2,8 @@ package com.cst2335.A040408723;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 
 import android.os.Bundle;
@@ -25,16 +27,40 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button sendButton;
     Button receiveButton;
     EditText typeMessage;
-
+    RecyclerView rView;
 
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
+
+    public class Message {
+
+        private String msgType;
+        boolean sendOrReceive;
+
+        public Message() {
+
+        }
+        public Message(boolean sendOrReceive, String msgType) {
+            this.msgType = msgType;
+            this.sendOrReceive=sendOrReceive;
+        }
+
+        public String getMsgType() {
+            return msgType;
+        }
+
+        public boolean isSendOrReceive() {
+            return sendOrReceive;
+        }
+
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
 
         sendButton = findViewById(R.id.buttonSend);
         receiveButton = findViewById(R.id.buttonReceive);
@@ -44,22 +70,17 @@ public class ChatRoomActivity extends AppCompatActivity {
         myListView.setAdapter(myAdapter = new MyListAdapter());
 
         sendButton.setOnClickListener(click -> {
-
             String typeText = typeMessage.getText().toString();
-
-
             if (!typeText.isEmpty()) {
                 Message newMsg = new Message(true,typeText);
                 list.add(newMsg);
                 typeMessage.setText("");
                 myAdapter.notifyDataSetChanged();
-
             }
         });
 
         receiveButton.setOnClickListener(click -> {
-            String typeText = typeMessage.getText().toString();
-
+         String typeText = typeMessage.getText().toString();
 
             if (!typeText.isEmpty()) {
                 Message newMsg = new Message(false,typeText);
@@ -81,7 +102,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public Object getItem(int i) {
-            return messages.get(i);
+            return list.get(i);
         }
 
         @Override
@@ -94,55 +115,31 @@ public class ChatRoomActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             MessageViewHolder holder = new MessageViewHolder();
             LayoutInflater inflater = getLayoutInflater();
-            @SuppressLint("ViewHolder") View newView = inflater.inflate(R.layout.message, parent, false);
-
-            Message msg = new Message();
+            View newView = inflater.inflate(R.layout.message, parent, false);
+            Message msg =new Message();
+            String msgText =msg.getMsgType();
 
             if (msg.isSendOrReceive()) {
 
                 holder.avatar = findViewById(R.id.send);
-                holder.text=(TextView)convertView.findViewById(R.id.sendmessage);
+                holder.msgText=msgText;
                 newView.setTag(holder);
-
+                return newView;
             } else {
+
                 holder.avatar = findViewById(R.id.receive);
-                //holder.text=(TextView)convertView.findViewById(R.id.receivemessage);
+                holder.msgText=msgText;
                 newView.setTag(holder);
+                return newView;
             }
-
-            return newView;
-
         }
 
         class MessageViewHolder {
             public View avatar;
-            TextView text;
+            String msgText;
         }
     }
 
-        public class Message {
-            public boolean sendOrReceive;
-            String msgType;
-
-            public Message(boolean sendOrReceive, String msgType) {
-                this.msgType = msgType;
-                this.sendOrReceive = sendOrReceive;
-
-            }
-
-            public Message() {
-
-            }
-
-            public String getMsgType() {
-                return msgType;
-            }
-
-            public boolean isSendOrReceive() {
-                return sendOrReceive;
-            }
-
-        }
 
 }
 

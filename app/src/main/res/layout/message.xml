@@ -19,7 +19,7 @@
         android:id="@+id/sendmessage"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="100dp"
+        android:paddingStart="100dp"
         android:textColor="#795548"
         app:layout_constraintRight_toRightOf="@+id/send"
         tools:ignore="MissingConstraints" />
@@ -29,7 +29,7 @@
         android:id="@+id/receivemessage"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:paddingRight="100dp"
+        android:paddingEnd="100dp"
         android:textColor="#455A64"
         tools:ignore="MissingConstraints"
         app:layout_constraintRight_toRightOf="@+id/receive"/>
@@ -39,7 +39,7 @@
         android:layout_height="40dp"
         android:id="@+id/receive"
         android:src="@drawable/row_receive"
-        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
          />

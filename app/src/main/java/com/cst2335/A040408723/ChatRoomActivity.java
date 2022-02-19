@@ -3,7 +3,7 @@ package com.cst2335.A040408723;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
-import android.content.Context;
+
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     EditText typeMessage;
 
 
-    private ArrayList<Message> list = new ArrayList<>();
+    ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
 
     @SuppressLint("NotifyDataSetChanged")
@@ -45,11 +46,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         sendButton.setOnClickListener(click -> {
 
             String typeText = typeMessage.getText().toString();
-            View image = findViewById(R.id.send);
+
 
             if (!typeText.isEmpty()) {
-                Message newMsg = new Message(true, typeText);
+                Message newMsg = new Message(true,typeText);
                 list.add(newMsg);
+                typeMessage.setText("");
                 myAdapter.notifyDataSetChanged();
 
             }
@@ -57,24 +59,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         receiveButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            View image = findViewById(R.id.receive);
+
 
             if (!typeText.isEmpty()) {
-
-                Message newMsg = new Message(false, typeText);
+                Message newMsg = new Message(false,typeText);
                 list.add(newMsg);
+                typeMessage.setText("");
                 myAdapter.notifyDataSetChanged();
             }
         });
     }
 
-    private class MyListAdapter extends BaseAdapter {
-        List<Message> messages=new ArrayList<Message>();
 
-        public void add(Message message){
-            this.messages.add(message);
-            notifyDataSetChanged();
-        }
+    private class MyListAdapter extends BaseAdapter {
+        List<Message> messages = new ArrayList<>();
+
         @Override
         public int getCount() {
             return list.size();
@@ -94,29 +93,32 @@ public class ChatRoomActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             MessageViewHolder holder = new MessageViewHolder();
-            View newView = inflater.inflate(R.layout.message, parent, false);
             LayoutInflater inflater = getLayoutInflater();
-            Message message=messages.get(position);
-            if(message.isSendOrReceive()) {
+            @SuppressLint("ViewHolder") View newView = inflater.inflate(R.layout.message, parent, false);
+
+            Message msg = new Message();
+
+            if (msg.isSendOrReceive()) {
+
                 holder.avatar = findViewById(R.id.send);
+                holder.text=(TextView)convertView.findViewById(R.id.sendmessage);
+                newView.setTag(holder);
 
+            } else {
+                holder.avatar = findViewById(R.id.receive);
+                //holder.text=(TextView)convertView.findViewById(R.id.receivemessage);
                 newView.setTag(holder);
-                holder.messageBody.setText(message.getText());
-            }else{
-                holder.avatar=findViewById(R.id.receive);
-                newView.setTag(holder);
-                holder.messageBody.setText(message.getText());
             }
-            return newView;
 
+            return newView;
 
         }
 
         class MessageViewHolder {
             public View avatar;
-            public TextView messageBody;
-
+            TextView text;
         }
+    }
 
         public class Message {
             public boolean sendOrReceive;
@@ -125,6 +127,10 @@ public class ChatRoomActivity extends AppCompatActivity {
             public Message(boolean sendOrReceive, String msgType) {
                 this.msgType = msgType;
                 this.sendOrReceive = sendOrReceive;
+
+            }
+
+            public Message() {
 
             }
 
@@ -137,7 +143,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
 
         }
-    }
+
 }
 
 

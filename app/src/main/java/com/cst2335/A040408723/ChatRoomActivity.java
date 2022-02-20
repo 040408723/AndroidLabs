@@ -4,9 +4,11 @@ package com.cst2335.A040408723;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,16 +39,19 @@ public class ChatRoomActivity extends AppCompatActivity {
         public Message(boolean sendOrReceive, String msgType, long _id) {
             this.msgType = msgType;
             this.sendOrReceive = sendOrReceive;
-            this.id=_id;
+            this.id = _id;
         }
+
         public boolean isSendOrReceive() {
             return sendOrReceive;
         }
-        public long getId(){
+
+        public long getId() {
             return id;
         }
-        public void setID(long id){
-            this.id=id;
+
+        public void setID(long id) {
+            this.id = id;
         }
     }
 
@@ -56,21 +61,21 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        myOpener=new MyOpenHelper(this);
-        theDatabase=myOpener.getWritableDatabase();
+        myOpener = new MyOpenHelper(this);
+        theDatabase = myOpener.getWritableDatabase();
 
-        Cursor results=theDatabase.rawQuery("Select * from "+MyOpenHelper.TABLE_NAME+":",null);
+        Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
 
-        int idIndex=results.getColumnIndex(MyOpenHelper.COL_ID);
-        int messageIndex=results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
-        int sOrRIndex=results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+        int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
+        int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
+        int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
-        while(results.moveToNext()){
-
-            int id=results.getInt(idIndex);
-            String message=results.getString(messageIndex);
-            int sOrR=results.getInt(sOrRIndex);
-            list.add(new Message(sendOrReceive,message,id));
+        while (results.moveToNext()) {
+            boolean sendOrReceive = true;
+            int id = results.getInt(idIndex);
+            String message = results.getString(messageIndex);
+            int sOrR = results.getInt(sOrRIndex);
+            list.add(new Message(sendOrReceive, message, id));
         }
 
         sendButton = findViewById(R.id.buttonSend);
@@ -82,7 +87,13 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         sendButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            Message newMsg = new Message(true, typeText,ID);
+
+            ContentValues newRow = new ContentValues();
+            newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
+            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+            long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+            Message newMsg = new Message(true, typeText, id);
+
             list.add(newMsg);
             typeMessage.setText("");
             myAdapter.notifyDataSetChanged();
@@ -90,19 +101,30 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         receiveButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            Message newMsg = new Message(false, typeText,ID);
+            //Message newMsg = new Message(false, typeText,ID);
+
+            ContentValues newRow = new ContentValues();
+            newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
+            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+            long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+            Message newMsg = new Message(false, typeText, id);
+
             list.add(newMsg);
             typeMessage.setText("");
             myAdapter.notifyDataSetChanged();
         });
 
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
+
+            Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
-                    .setMessage("The selected row is: " + pos+". " + "The database id is:" + id)
+                    .setMessage("The selected row is: " + pos + ". " + "The database id is:" + id)
                     .setPositiveButton("Yes", (click, arg) -> {
                         list.remove(pos);
                         myAdapter.notifyDataSetChanged();
+                        theDatabase.delete(MyOpenHelper.TABLE_NAME,
+                                MyOpenHelper.COL_ID + "=?", new String[]{Long.toString(whatWasClicked.getId())});
                     })
                     .setNegativeButton("No", (click, arg) -> {
                     })
@@ -110,7 +132,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
-        Button previousButton=findViewById(R.id.previousButton);
+        Button previousButton = findViewById(R.id.previousButton);
         previousButton.setOnClickListener(click -> {
             finish();
         });
@@ -150,6 +172,20 @@ public class ChatRoomActivity extends AppCompatActivity {
                 return newView2;
             }
         }
+    }
+
+    public void printCursor(Cursor c, int version) {
+        if (c.moveToFirst()) {
+            StringBuilder sb = new StringBuilder();
+            int columnsQty = c.getColumnCount();
+            for (int idx = 0; idx < columnsQty; ++idx) {
+                sb.append(c.getString(idx));
+                if (idx < columnsQty - 1)
+                    sb.append(";");
+            }
+            Log.v(TAG, String.format("Row: %d, Values: %s", c.getPositon(), sb.toString()));
+        }
+        while (c.moveToNext()) ;
     }
 }
 

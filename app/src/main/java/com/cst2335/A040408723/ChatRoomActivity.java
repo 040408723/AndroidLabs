@@ -64,7 +64,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
 
-        Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
+        @SuppressLint("Recycle") Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
@@ -173,6 +173,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         }
     }
+    public static final String TAG="Database Debug";
 
     public void printCursor(Cursor c, int version) {
         if (c.moveToFirst()) {
@@ -183,7 +184,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 if (idx < columnsQty - 1)
                     sb.append(";");
             }
-            Log.v(TAG, String.format("Row: %d, Values: %s", c.getPositon(), sb.toString()));
+            Log.v(TAG, String.format("Row: %d, Values: %s", sb.toString()));
         }
         while (c.moveToNext()) ;
     }

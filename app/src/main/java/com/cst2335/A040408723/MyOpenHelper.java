@@ -17,7 +17,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String result=String.format(" % % %", "FirstString", "10", "10.0");
+       String results=String.format(" % % %", "FirstString", "10", "10.0");
         db.execSQL(String.format("Create table %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s INTEGER, %s TEXT):"
         ,TABLE_NAME,COL_ID, COL_MESSAGE,COL_SEND_RECEIVE));
     }

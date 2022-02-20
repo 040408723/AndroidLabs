@@ -4,6 +4,8 @@ package com.cst2335.A040408723;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,9 @@ import java.util.ArrayList;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+    MyOpenHelper myOpener;
+    SQLiteDatabase theDatabase;
+
     Button sendButton;
     Button receiveButton;
     EditText typeMessage;
@@ -27,13 +32,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         private String msgType;
         boolean sendOrReceive;
+        long id;
 
-        public Message(boolean sendOrReceive, String msgType) {
+        public Message(boolean sendOrReceive, String msgType, long _id) {
             this.msgType = msgType;
             this.sendOrReceive = sendOrReceive;
+            this.id=_id;
         }
         public boolean isSendOrReceive() {
             return sendOrReceive;
+        }
+        public long getId(){
+            return id;
+        }
+        public void setID(long id){
+            this.id=id;
         }
     }
 
@@ -42,6 +55,23 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        myOpener=new MyOpenHelper(this);
+        theDatabase=myOpener.getWritableDatabase();
+
+        Cursor results=theDatabase.rawQuery("Select * from "+MyOpenHelper.TABLE_NAME+":",null);
+
+        int idIndex=results.getColumnIndex(MyOpenHelper.COL_ID);
+        int messageIndex=results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
+        int sOrRIndex=results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+
+        while(results.moveToNext()){
+
+            int id=results.getInt(idIndex);
+            String message=results.getString(messageIndex);
+            int sOrR=results.getInt(sOrRIndex);
+            list.add(new Message(sendOrReceive,message,id));
+        }
 
         sendButton = findViewById(R.id.buttonSend);
         receiveButton = findViewById(R.id.buttonReceive);
@@ -52,7 +82,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         sendButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            Message newMsg = new Message(true, typeText);
+            Message newMsg = new Message(true, typeText,ID);
             list.add(newMsg);
             typeMessage.setText("");
             myAdapter.notifyDataSetChanged();
@@ -60,7 +90,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         receiveButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            Message newMsg = new Message(false, typeText);
+            Message newMsg = new Message(false, typeText,ID);
             list.add(newMsg);
             typeMessage.setText("");
             myAdapter.notifyDataSetChanged();

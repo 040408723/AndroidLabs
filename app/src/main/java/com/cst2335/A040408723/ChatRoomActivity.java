@@ -52,7 +52,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         sendButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-
             Message newMsg = new Message(true, typeText);
             list.add(newMsg);
             typeMessage.setText("");

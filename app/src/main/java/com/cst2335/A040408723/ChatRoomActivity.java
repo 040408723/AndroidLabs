@@ -5,11 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +20,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button receiveButton;
     EditText typeMessage;
 
-
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
-
 
     public class Message {
 
@@ -36,7 +32,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             this.msgType = msgType;
             this.sendOrReceive = sendOrReceive;
         }
-
         public boolean isSendOrReceive() {
             return sendOrReceive;
         }
@@ -76,9 +71,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
                     .setMessage("The selected row is: " + pos+". " + "The database id is:" + id)
-
                     .setPositiveButton("Yes", (click, arg) -> {
-
                         list.remove(pos);
                         myAdapter.notifyDataSetChanged();
                     })
@@ -88,15 +81,11 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
-
         Button previousButton=findViewById(R.id.previousButton);
         previousButton.setOnClickListener(click -> {
-
             finish();
         });
     }
-
-
 
     private class MyListAdapter extends BaseAdapter {
 

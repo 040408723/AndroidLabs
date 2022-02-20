@@ -21,5 +21,6 @@
     <string name="sendPerson">fajian ren</string>
     <string name="receivePerson">shoujian ren</string>
     <string name="receiveMessage">shou xinxi</string>
+    <string name="back">fan hui</string>
 
 </resources>

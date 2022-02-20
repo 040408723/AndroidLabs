@@ -6,32 +6,32 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-
-    <EditText
-        android:id="@+id/receivemessage"
-        android:layout_width="165dp"
-        android:layout_height="49dp"
-        android:paddingEnd="100dp"
-        android:textColor="#455A64"
+    <ImageView
+        android:id="@+id/send"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/row_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082"
+        app:layout_constraintVertical_bias="0.04"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/receive"
-        android:layout_width="91dp"
-        android:layout_height="43dp"
-        android:paddingEnd="0dp"
-        android:src="@drawable/row_receive"
+    <EditText
+        android:id="@+id/sendmessage"
+        android:layout_width="134dp"
+        android:layout_height="35dp"
+        android:paddingStart="100dp"
+        android:textColor="#795548"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.047"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,5 +20,6 @@
     <string name="sendPerson">send person</string>
     <string name="receivePerson">receive person</string>
     <string name="receiveMessage">receive message</string>
+    <string name="back">back</string>
 
 </resources>

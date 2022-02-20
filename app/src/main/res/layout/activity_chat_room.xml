@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context=".ChatRoomActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/previousButton"
+        android:text="@string/back"/>
 
     <ListView
         android:id="@+id/listview1"

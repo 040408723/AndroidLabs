@@ -9,16 +9,17 @@
 
     <EditText
         android:id="@+id/receivemessage"
-        android:layout_width="165dp"
-        android:layout_height="49dp"
+        android:layout_width="167dp"
+        android:layout_height="65dp"
+        android:gravity="right"
         android:paddingEnd="100dp"
         android:textColor="#455A64"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082"
+        app:layout_constraintVertical_bias="0.08"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -29,9 +30,9 @@
         android:src="@drawable/row_receive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.084" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

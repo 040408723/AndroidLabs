@@ -23,6 +23,8 @@ import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+    public static final String TAG="ChatRoom_ACTIVITY";
+
     MyOpenHelper myOpener;
     SQLiteDatabase theDatabase;
 
@@ -53,9 +55,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             return id;
         }
 
-        public void setID(long id) {
+        /*public void setID(long id) {
             this.id = id;
-        }
+        }*/
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -72,7 +74,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
-        int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+        //int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
         while (results.moveToNext()) {
 
@@ -128,9 +130,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setMessage("The selected row is: " + pos + ". " + "The database id is:" + id)
                     .setPositiveButton("Yes", (click, arg) -> {
                         list.remove(pos);
-                        myAdapter.notifyDataSetChanged();
+                       // myAdapter.notifyDataSetChanged();
                         theDatabase.delete(MyOpenHelper.TABLE_NAME,
                                 MyOpenHelper.COL_ID + "=?", new String[]{Long.toString(whatWasClicked.getId())});
+                        myAdapter.notifyDataSetChanged();
                     })
                     .setNegativeButton("No", (click, arg) -> {
                     })
@@ -142,6 +145,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         previousButton.setOnClickListener(click -> {
             finish();
         });
+
+        Log.i(TAG,"this is a test");
+        printCursor(results,1);
     }
 
     private class MyListAdapter extends BaseAdapter {
@@ -179,10 +185,10 @@ public class ChatRoomActivity extends AppCompatActivity {
             }
         }
 
+    }
 
-        public void printCursor(Cursor c, int version) {
+        public void printCursor (Cursor c,int version){
 
-            //int dbVersion = version;
             int numberCursorColumns = c.getColumnCount();
             String[] nameCursorColumns = c.getColumnNames();
             int numberCursorResults = c.getCount();
@@ -191,7 +197,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             c.moveToFirst();
 
-            while (!c.isAfterLast()) {
+            if (c.moveToFirst()) {
 
                 int typeIndex = c.getColumnIndex(MyOpenHelper.COL_MESSAGE);
                 int idColIndex = c.getColumnIndex(MyOpenHelper.COL_ID);
@@ -211,7 +217,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.i("ROW OF RESULTS: ", cursorRowValues);
             c.moveToNext();
         }
-    }
+
 }
 
 

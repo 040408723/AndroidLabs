@@ -1,8 +1,14 @@
 package com.cst2335.A040408723;
 
+import static java.lang.String.format;
+import static java.text.Collator.PRIMARY;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
+import android.util.Log;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
     public static final String filename="MyDatabase";
@@ -13,13 +19,16 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public static final String COL_SEND_RECEIVE="SendOrReceive";
 
     public MyOpenHelper(Context context){
-        super(context,filename,null,version);
+        super(context, filename,null,version);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-       String results=String.format(" % % %", "FirstString", "10", "10.0");
-        db.execSQL(String.format("Create table %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s INTEGER, %s TEXT):"
-        ,TABLE_NAME,COL_ID, COL_MESSAGE,COL_SEND_RECEIVE));
+      String result="CREATE TABLE " + TABLE_NAME + " ("
+              +COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+              +COL_MESSAGE + " TEXT, "
+              +COL_SEND_RECEIVE +" TEXT )";
+
+       db.execSQL(result);
     }
 
     @Override
@@ -27,4 +36,5 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.execSQL("Drop table if exists "+TABLE_NAME);
         this.onCreate(db);
     }
+
 }

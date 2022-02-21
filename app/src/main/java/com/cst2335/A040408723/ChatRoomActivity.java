@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -64,18 +67,20 @@ public class ChatRoomActivity extends AppCompatActivity {
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
 
-        @SuppressLint("Recycle") Cursor results = theDatabase.rawQuery("Select * from " + MyOpenHelper.TABLE_NAME + ";", null);
+        @SuppressLint("Recycle") Cursor results = theDatabase.rawQuery("Select * from "
+                + MyOpenHelper.TABLE_NAME + ";", null);
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
         int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
         while (results.moveToNext()) {
-            boolean sendOrReceive = true;
+
             int id = results.getInt(idIndex);
             String message = results.getString(messageIndex);
-            int sOrR = results.getInt(sOrRIndex);
-            list.add(new Message(sendOrReceive, message, id));
+            //int sOrR = results.getInt(sOrRIndex);
+            list.add(new Message(true, message, id));
+            list.add(new Message(false, message, id));
         }
 
         sendButton = findViewById(R.id.buttonSend);
@@ -92,6 +97,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
             newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
             long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+
             Message newMsg = new Message(true, typeText, id);
 
             list.add(newMsg);
@@ -101,12 +107,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         receiveButton.setOnClickListener(click -> {
             String typeText = typeMessage.getText().toString();
-            //Message newMsg = new Message(false, typeText,ID);
 
             ContentValues newRow = new ContentValues();
             newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
             newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
             long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
+
             Message newMsg = new Message(false, typeText, id);
 
             list.add(newMsg);
@@ -172,23 +178,43 @@ public class ChatRoomActivity extends AppCompatActivity {
                 return newView2;
             }
         }
-    }
-    public static final String TAG="Database Debug";
 
-    public void printCursor(Cursor c, int version) {
-        if (c.moveToFirst()) {
-            StringBuilder sb = new StringBuilder();
-            int columnsQty = c.getColumnCount();
-            for (int idx = 0; idx < columnsQty; ++idx) {
-                sb.append(c.getString(idx));
-                if (idx < columnsQty - 1)
-                    sb.append(";");
+
+        public void printCursor(Cursor c, int version) {
+
+            //int dbVersion = version;
+            int numberCursorColumns = c.getColumnCount();
+            String[] nameCursorColumns = c.getColumnNames();
+            int numberCursorResults = c.getCount();
+            List<Message> cursorRowValuesList = new ArrayList<>();
+            String cursorRowValues;
+
+            c.moveToFirst();
+
+            while (!c.isAfterLast()) {
+
+                int typeIndex = c.getColumnIndex(MyOpenHelper.COL_MESSAGE);
+                int idColIndex = c.getColumnIndex(MyOpenHelper.COL_ID);
+
+                String type = c.getString(typeIndex);
+                long id = c.getLong(idColIndex);
+
+                cursorRowValuesList.add(new Message(true, type, id));
+                cursorRowValuesList.add(new Message(false, type, id));
             }
-            Log.v(TAG, String.format("Row: %d, Values: %s", sb.toString()));
+            cursorRowValues = TextUtils.join(",", cursorRowValuesList);
+
+            Log.i("DATABASE VERSION NUMBER: ", Integer.toString(version));
+            Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberCursorColumns));
+            Log.i("COLUMN NAMES: ", Arrays.toString(nameCursorColumns));
+            Log.i("NUMBER OF ROWS: ", Integer.toString(numberCursorResults));
+            Log.i("ROW OF RESULTS: ", cursorRowValues);
+            c.moveToNext();
         }
-        while (c.moveToNext()) ;
     }
 }
+
+
 
 
 

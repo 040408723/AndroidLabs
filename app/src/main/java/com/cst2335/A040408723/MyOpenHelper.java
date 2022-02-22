@@ -1,14 +1,8 @@
 package com.cst2335.A040408723;
 
-import static java.lang.String.format;
-import static java.text.Collator.PRIMARY;
-
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
-import android.util.Log;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
     public static final String filename="MyDatabase";

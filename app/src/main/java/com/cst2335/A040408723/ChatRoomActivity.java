@@ -8,7 +8,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,9 +54,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             return id;
         }
 
-        /*public void setID(long id) {
+        public void setID(long id) {
             this.id = id;
-        }*/
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -193,29 +192,33 @@ public class ChatRoomActivity extends AppCompatActivity {
             String[] nameCursorColumns = c.getColumnNames();
             int numberCursorResults = c.getCount();
             List<Message> cursorRowValuesList = new ArrayList<>();
-            String cursorRowValues;
 
             c.moveToFirst();
 
-            if (c.moveToFirst()) {
+            while (!c.isAfterLast()) {
 
                 int typeIndex = c.getColumnIndex(MyOpenHelper.COL_MESSAGE);
                 int idColIndex = c.getColumnIndex(MyOpenHelper.COL_ID);
+                int sOrRColIndex=c.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
                 String type = c.getString(typeIndex);
                 long id = c.getLong(idColIndex);
+                int sOrR=c.getInt(sOrRColIndex);
+
+                String cursorRowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
+                Log.i("ROW OF RESULTS", cursorRowValues );
 
                 cursorRowValuesList.add(new Message(true, type, id));
                 cursorRowValuesList.add(new Message(false, type, id));
+
+                c.moveToNext();
             }
-            cursorRowValues = TextUtils.join(",", cursorRowValuesList);
 
             Log.i("DATABASE VERSION NUMBER: ", Integer.toString(version));
             Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberCursorColumns));
             Log.i("COLUMN NAMES: ", Arrays.toString(nameCursorColumns));
             Log.i("NUMBER OF ROWS: ", Integer.toString(numberCursorResults));
-            Log.i("ROW OF RESULTS: ", cursorRowValues);
-            c.moveToNext();
+
         }
 
 }

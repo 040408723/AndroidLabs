@@ -183,9 +183,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         public void printCursor (Cursor c,int version){
 
-            int numberCursorColumns = c.getColumnCount();
-            String[] nameCursorColumns = c.getColumnNames();
-            int numberCursorResults = c.getCount();
+            int numberColumns = c.getColumnCount();
+            String[] nameColumns = c.getColumnNames();
+            int numberRows = c.getCount();
 
             c.moveToFirst();
 
@@ -199,16 +199,16 @@ public class ChatRoomActivity extends AppCompatActivity {
                 long id = c.getLong(idColIndex);
                 int sOrR=c.getInt(sOrRColIndex);
 
-                String cursorRowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
-                Log.i("ROW OF RESULTS", cursorRowValues );
+                String rowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
+                Log.i("ROW OF RESULTS", rowValues );
 
                 c.moveToNext();
             }
 
             Log.i("DATABASE VERSION NUMBER: ", Integer.toString(version));
-            Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberCursorColumns));
-            Log.i("COLUMN NAMES: ", Arrays.toString(nameCursorColumns));
-            Log.i("NUMBER OF ROWS: ", Integer.toString(numberCursorResults));
+            Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberColumns));
+            Log.i("COLUMN NAMES: ", Arrays.toString(nameColumns));
+            Log.i("NUMBER OF ROWS: ", Integer.toString(numberRows));
 
         }
 

@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -54,9 +54,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             return id;
         }
 
-        public void setID(long id) {
-            this.id = id;
-        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -73,13 +70,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
-        //int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
         while (results.moveToNext()) {
 
             int id = results.getInt(idIndex);
             String message = results.getString(messageIndex);
-            //int sOrR = results.getInt(sOrRIndex);
+
             list.add(new Message(true, message, id));
             list.add(new Message(false, message, id));
         }
@@ -191,7 +187,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             int numberCursorColumns = c.getColumnCount();
             String[] nameCursorColumns = c.getColumnNames();
             int numberCursorResults = c.getCount();
-            List<Message> cursorRowValuesList = new ArrayList<>();
 
             c.moveToFirst();
 
@@ -207,9 +202,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 String cursorRowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
                 Log.i("ROW OF RESULTS", cursorRowValues );
-
-                cursorRowValuesList.add(new Message(true, type, id));
-                cursorRowValuesList.add(new Message(false, type, id));
 
                 c.moveToNext();
             }

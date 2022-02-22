@@ -125,7 +125,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setMessage("The selected row is: " + pos + ". " + "The database id is:" + id)
                     .setPositiveButton("Yes", (click, arg) -> {
                         list.remove(pos);
-                       // myAdapter.notifyDataSetChanged();
                         theDatabase.delete(MyOpenHelper.TABLE_NAME,
                                 MyOpenHelper.COL_ID + "=?", new String[]{Long.toString(whatWasClicked.getId())});
                         myAdapter.notifyDataSetChanged();

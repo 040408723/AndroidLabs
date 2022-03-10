@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             String s1 = sh.getString("emailAddress", "");
             inputAddress.setText(s1);
             SharedPreferences.Editor myEdit=sh.edit();
-            myEdit.commit();
+            //myEdit.commit();
 
             Button button1=findViewById(R.id.button1);
 

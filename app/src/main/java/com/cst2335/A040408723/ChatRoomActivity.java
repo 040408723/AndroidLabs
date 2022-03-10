@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
-    public static final String TAG="ChatRoom_ACTIVITY";
+    public static final String TAG="CHATROOM_ACTIVITY";
 
     MyOpenHelper myOpener;
     SQLiteDatabase theDatabase;
@@ -65,7 +65,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
 
-        @SuppressLint("Recycle") Cursor results = theDatabase.rawQuery("Select * from "
+       Cursor results = theDatabase.rawQuery("Select * from "
                 + MyOpenHelper.TABLE_NAME + ";", null);
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
@@ -140,8 +140,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             finish();
         });
 
-        Log.i(TAG,"this is a test");
+        Log.i(TAG,"THIS IS A TEST");
+
         printCursor(results,1);
+        results.close();
+
+
     }
 
     private class MyListAdapter extends BaseAdapter {

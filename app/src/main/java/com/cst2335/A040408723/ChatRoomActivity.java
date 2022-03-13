@@ -129,8 +129,18 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
 
-            Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-            startActivity(startActivity);
+            DetailsFragment secondFragment=new DetailsFragment();
+
+            if(isTablet){
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.flbox1,secondFragment)
+                        .commit();
+            }else {
+                Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                startActivity(startActivity);
+            }
 
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

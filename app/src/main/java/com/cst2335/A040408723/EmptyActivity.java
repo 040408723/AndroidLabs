@@ -13,6 +13,12 @@ public class EmptyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
 
+        DetailsFragment secondFragment=new DetailsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.flbox1,secondFragment)
+                .commit();
 
     }
 }

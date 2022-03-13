@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".ChatRoomActivity">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back" />
+
+        <ListView
+            android:id="@+id/listview1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/buttonSend"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:height="80dp"
+                android:text="@string/send" />
+
+            <EditText
+                android:id="@+id/edittext1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:height="80dp"
+                android:autofillHints="text"
+                android:hint="@string/textType"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/buttonReceive"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:height="80dp"
+                android:text="@string/receive" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myRecycleView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="650dp"
+        android:layout_height="1158dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/flbox1"
+        tools:ignore="NotSibling" />
+</RelativeLayout>

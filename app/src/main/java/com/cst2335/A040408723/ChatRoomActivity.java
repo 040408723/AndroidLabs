@@ -3,8 +3,13 @@ package com.cst2335.A040408723;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,6 +26,8 @@ import java.util.Arrays;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
+
+
 
     public static final String TAG="CHATROOM_ACTIVITY";
 
@@ -55,12 +62,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
     }
+    boolean isTablet=false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        isTablet=findViewById(R.id.flbox1)!=null;
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
@@ -118,6 +128,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
+
+            Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+            startActivity(startActivity);
 
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

@@ -41,13 +41,8 @@ public class DetailsFragment extends Fragment {
 
         return view;
     }
-    //Button button=findViewById(R.id.hide);
-    //button.setOnClickListener(click->{
-        //FragmentManager fragmentManager=getSupportFragmentManager();
-        //fragmentManager.beginTransaction()
-               // .setReorderingAllowed(true)
-                //.replace(R.id.flContainer1, secondFragment)
-               // .addToBackStack(null)
-                //.commit();
-    //})
+
+    public void onButtonClick(){
+
+    }
 }

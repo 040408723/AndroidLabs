@@ -132,6 +132,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             DetailsFragment secondFragment=new DetailsFragment();
 
             if(isTablet){
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .setReorderingAllowed(true)

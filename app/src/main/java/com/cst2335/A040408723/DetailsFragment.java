@@ -38,7 +38,7 @@ public class DetailsFragment extends Fragment {
         textview1=view.findViewById(R.id.here);
         textview2=view.findViewById(R.id.id);
         checkbox1=view.findViewById(R.id.checkboxmsg);
-
+        //return inflater.inflate(R.layout.fragment_details, container, false);
         return view;
     }
 

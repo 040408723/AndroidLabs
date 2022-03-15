@@ -3,10 +3,6 @@ package com.cst2335.A040408723;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -28,8 +24,7 @@ import java.util.Arrays;
 public class ChatRoomActivity extends AppCompatActivity {
 
 
-
-    public static final String TAG="CHATROOM_ACTIVITY";
+    public static final String TAG = "CHATROOM_ACTIVITY";
 
     MyOpenHelper myOpener;
     SQLiteDatabase theDatabase;
@@ -62,7 +57,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
     }
-    boolean isTablet=false;
+
+    boolean isTablet = false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -70,12 +66,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        isTablet=findViewById(R.id.flbox1)!=null;
+        isTablet = findViewById(R.id.flbox1) != null;
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
 
-       Cursor results = theDatabase.rawQuery("Select * from "
+        Cursor results = theDatabase.rawQuery("Select * from "
                 + MyOpenHelper.TABLE_NAME + ";", null);
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
@@ -127,22 +123,26 @@ public class ChatRoomActivity extends AppCompatActivity {
             myAdapter.notifyDataSetChanged();
         });
 
+
+        //myListView.setOnItemClickListener((list, view, position, id) -> {
+            //DetailsFragment secondFragment = new DetailsFragment();
+            //if (isTablet) {
+                //getSupportFragmentManager()
+                        //.beginTransaction()
+                        //.setReorderingAllowed(true)
+                        //.replace(R.id.flbox1, secondFragment)
+                        //.commit();
+            //} else {
+                //Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                //startActivity(startActivity);
+            //}
+        //});
+    //}
+
+
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
-
-            DetailsFragment secondFragment=new DetailsFragment();
-
-            if(isTablet){
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.flbox1,secondFragment)
-                        .commit();
-            }else {
-                Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                startActivity(startActivity);
-            }
-
+            Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+            startActivity(startActivity);
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")

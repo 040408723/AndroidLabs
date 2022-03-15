@@ -3,12 +3,12 @@ package com.cst2335.A040408723;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.TextView;
 
 
@@ -27,9 +27,9 @@ public class DetailsFragment extends Fragment {
         }
     }
 
-    private static TextView textview1;
-    private static TextView textview2;
-    private static TextView checkbox1;
+    private TextView textview1;
+    private TextView textview2;
+    private  TextView checkbox1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

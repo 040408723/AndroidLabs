@@ -12,44 +12,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <EditText
+        android:id="@+id/here"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/here"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="734dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="638dp"
         android:text="@string/hello_blank_fragment" />
 
-    <TextView
+    <EditText
+        android:id="@+id/id"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/id"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginEnd="-4dp"
         android:text="@string/id_fragment" />
 
     <CheckBox
+        android:id="@+id/checkboxmsg"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/checkboxmsg"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="83dp"
-        android:layout_marginEnd="-3dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginEnd="-8dp"
         android:text="is a send message" />
 
     <Button
+        android:id="@+id/hide"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/hide"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="722dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginTop="665dp"
+        android:layout_marginEnd="5dp"
         android:text="@string/buttonhide" />
 
 </RelativeLayout>

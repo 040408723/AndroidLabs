@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +65,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_chat_room);
 
         isTablet = findViewById(R.id.flbox1) != null;
@@ -76,11 +78,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
-
+        int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
         while (results.moveToNext()) {
 
             int id = results.getInt(idIndex);
             String message = results.getString(messageIndex);
+            int sorR = results.getInt(sOrRIndex);
 
             list.add(new Message(true, message, id));
             list.add(new Message(false, message, id));
@@ -123,26 +126,11 @@ public class ChatRoomActivity extends AppCompatActivity {
             myAdapter.notifyDataSetChanged();
         });
 
-
-        //myListView.setOnItemClickListener((list, view, position, id) -> {
-            //DetailsFragment secondFragment = new DetailsFragment();
-            //if (isTablet) {
-                //getSupportFragmentManager()
-                        //.beginTransaction()
-                        //.setReorderingAllowed(true)
-                        //.replace(R.id.flbox1, secondFragment)
-                        //.commit();
-            //} else {
-                //Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                //startActivity(startActivity);
-            //}
-        //});
-    //}
-
-
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
+
             Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
             startActivity(startActivity);
+
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
@@ -159,14 +147,33 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
+        /*myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                DetailsFragment secondFragment = new DetailsFragment();
+
+                if (isTablet) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.flbox1, secondFragment)
+                            .commit();
+                } else {
+                    Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                    startActivity(startActivity);
+                }
+            }
+        });*/
+
         Button previousButton = findViewById(R.id.previousButton);
         previousButton.setOnClickListener(click -> {
             finish();
         });
 
-        Log.i(TAG,"THIS IS A TEST");
+        Log.i(TAG, "THIS IS A TEST");
 
-        printCursor(results,1);
+        printCursor(results, 1);
         results.close();
 
 
@@ -195,15 +202,15 @@ public class ChatRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
 
             if (list.get(position).isSendOrReceive()) {
-                View newView1 = inflater.inflate(R.layout.sendmessage, parent, false);
-                EditText messageTyped1 = newView1.findViewById(R.id.sendmessage);
-                messageTyped1.setText(getItem(position).toString());
-                return newView1;
+                View newView = inflater.inflate(R.layout.sendmessage, parent, false);
+                EditText messageTyped = newView.findViewById(R.id.sendmessage);
+                messageTyped.setText(getItem(position).toString());
+                return newView;
             } else {
-                View newView2 = inflater.inflate(R.layout.message, parent, false);
-                EditText messageTyped2 = newView2.findViewById(R.id.receivemessage);
-                messageTyped2.setText(getItem(position).toString());
-                return newView2;
+                View newView = inflater.inflate(R.layout.message, parent, false);
+                EditText messageTyped = newView.findViewById(R.id.receivemessage);
+                messageTyped.setText(getItem(position).toString());
+                return newView;
             }
         }
 

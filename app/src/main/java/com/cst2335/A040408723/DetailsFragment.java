@@ -20,6 +20,7 @@ public class DetailsFragment extends Fragment {
     private static final String ARG_NUM1="param1";
     private static final String ARG_NUM2="param2";
     int position;
+    boolean isSend;
 
     public DetailsFragment(){
 
@@ -63,10 +64,12 @@ public class DetailsFragment extends Fragment {
 
         String message=bundle.getString("Message");
         long id=bundle.getLong("ID");
-        long idChat=bundle.getLong("idChat");
+        long msgID=bundle.getLong("MessageID");
 
         textview1.setText(message);
         id1.setText(String.valueOf(id));
+
+        if(isSend)
 
         hide.setOnClickListener(view1 -> {
             if(isTablet){
@@ -80,7 +83,7 @@ public class DetailsFragment extends Fragment {
                 Intent nextActivity=new Intent();
                 nextActivity.putExtra("Message", message);
                 nextActivity.putExtra("Delete ID", id);
-                nextActivity.putExtra("idChat", idChat);
+                nextActivity.putExtra("MessageID", msgID);
                 getActivity().setResult(Activity.RESULT_OK, nextActivity);
                 getActivity().finish();
             }

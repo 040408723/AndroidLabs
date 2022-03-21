@@ -146,14 +146,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
             String message=myAdapter.getItem(position).toString();
-            long IdInChat=myAdapter.getItemId(position);
+            long msgID=myAdapter.getItemId(position);
 
             DetailsFragment fragment = new DetailsFragment();
             Bundle bundle=new Bundle();
 
             bundle.putString("Message",message);
             bundle.putLong("ID", id);
-            bundle.putLong("IdInChat", IdInChat);
+            bundle.putLong("MessageID", msgID);
 
             if (isTablet) {
                 fragment.setArguments(bundle);

@@ -59,7 +59,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    boolean isTablet = false;
+    //boolean isTablet = false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -68,7 +68,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_chat_room);
 
-        isTablet = findViewById(R.id.flbox1) != null;
+        boolean isTablet = findViewById(R.id.flbox1) != null;
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
@@ -127,9 +127,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
-
-            Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-            startActivity(startActivity);
+            //Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+            //startActivity(startActivity);
 
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -147,24 +146,31 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
-        /*myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        myListView.setOnItemClickListener((adapterView, view, position, id) -> {
+            String message=myAdapter.getItem(position).toString();
+            long IdInChat=myAdapter.getItemId(position);
 
-                DetailsFragment secondFragment = new DetailsFragment();
+            DetailsFragment fragment = new DetailsFragment();
+            Bundle bundle=new Bundle();
 
-                if (isTablet) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .setReorderingAllowed(true)
-                            .replace(R.id.flbox1, secondFragment)
-                            .commit();
-                } else {
-                    Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                    startActivity(startActivity);
-                }
+            bundle.putString("Message",message);
+            bundle.putLong("ID", id);
+            bundle.putLong("IdInChat", IdInChat);
+
+            if (isTablet) {
+                fragment.setArguments(bundle);
+                fragment.setIsTablet(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.flbox1, fragment)
+                        .commit();
+            } else {
+                fragment.setIsTablet(false);
+                Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                startActivity.putExtra("ChatItem",bundle);
+                startActivity(startActivity);
             }
-        });*/
+        });
 
         Button previousButton = findViewById(R.id.previousButton);
         previousButton.setOnClickListener(click -> {

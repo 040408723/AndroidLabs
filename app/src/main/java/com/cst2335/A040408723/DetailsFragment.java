@@ -1,5 +1,7 @@
 package com.cst2335.A040408723;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -7,30 +9,40 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 
 public class DetailsFragment extends Fragment {
-    ArrayAdapter<String> itemsAdapter;
 
-    int position = 0;
-    boolean isSend;
-    private boolean isSend1;
+    boolean isTablet = false;
+    private static final String ARG_NUM1="param1";
+    private static final String ARG_NUM2="param2";
+
+    public DetailsFragment(){
+
+    }
+
+    public static DetailsFragment newInstance(String param1, String param2){
+        DetailsFragment fragment=new DetailsFragment();
+        Bundle args=new Bundle();
+        args.putString(ARG_NUM1, param1);
+        args.putString(ARG_NUM2,param2);
+        fragment.setArguments(args);
+        return fragment;
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState == null){
-
             if(getArguments() != null) {
-                position = getArguments().getInt("position", 0);
-            }
-        }
 
+                String mParam1 = getArguments().getString(ARG_NUM1);
+                String mParam2 = getArguments().getString(ARG_NUM2);
+            }
     }
 
 
@@ -41,30 +53,39 @@ public class DetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_details, container, false);
         TextView textview1=view.findViewById(R.id.here);
-        TextView textview2=view.findViewById(R.id.id);
+        TextView id1=view.findViewById(R.id.id);
         CheckBox checkbox1=view.findViewById(R.id.checkboxmsg);
+        Button hide=view.findViewById(R.id.hide);
 
-        textview1.setText(textview1.toString());
-        textview2.setText(textview2.toString());
-        checkbox1.setChecked(isSend1);
+        Bundle bundle=getArguments();
 
-        textview1.getText();
-        textview2.getText();
+        String message=bundle.getString("Message");
+        long id=bundle.getLong("ID");
+        long idChat=bundle.getLong("idChat");
+
+        textview1.setText(message);
+        id1.setText(String.valueOf(id));
+
+        hide.setOnClickListener(view1 -> {
+            if(isTablet){
+            ChatRoomActivity chat=(ChatRoomActivity)getActivity() ;
+
+                chat.getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(getParentFragment())
+                        .commit();
+            }else{
+                Intent nextActivity=new Intent();
+                nextActivity.putExtra("Delete ID", id);
+                nextActivity.putExtra("idChat", idChat);
+                getActivity().setResult(Activity.RESULT_OK, nextActivity);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }
-
-
-
-    public void onViewCreated(View view, Bundle savedInstanceState){
-
-
-
-
-
-    }
-
-    public void onButtonClick(){
-
+    public void setIsTablet(boolean isTablet) {
+        this.isTablet = isTablet;
     }
 }

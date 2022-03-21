@@ -70,10 +70,10 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/flbox1"
         android:layout_width="650dp"
         android:layout_height="1158dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/flbox1"
         tools:ignore="NotSibling" />
 </RelativeLayout>

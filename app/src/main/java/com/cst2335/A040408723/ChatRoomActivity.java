@@ -127,8 +127,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         myListView.setOnItemLongClickListener((p, b, pos, id) -> {
-            //Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-            //startActivity(startActivity);
 
             Message whatWasClicked = list.get(pos);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -209,15 +207,15 @@ public class ChatRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
 
             if (list.get(position).isSendOrReceive()) {
-                View newView = inflater.inflate(R.layout.sendmessage, parent, false);
-                EditText messageTyped = newView.findViewById(R.id.sendmessage);
+                View newView1 = inflater.inflate(R.layout.sendmessage, parent, false);
+                EditText messageTyped = newView1.findViewById(R.id.sendmessage);
                 messageTyped.setText(getItem(position).toString());
-                return newView;
+                return newView1;
             } else {
-                View newView = inflater.inflate(R.layout.message, parent, false);
-                EditText messageTyped = newView.findViewById(R.id.receivemessage);
+                View newView2 = inflater.inflate(R.layout.message, parent, false);
+                EditText messageTyped = newView2.findViewById(R.id.receivemessage);
                 messageTyped.setText(getItem(position).toString());
-                return newView;
+                return newView2;
             }
         }
 

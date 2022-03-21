@@ -5,21 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:descendantFocusability = "blocksDescendants"
+
     tools:context=".ChatRoomActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/previousButton"
-        android:focusable="false"
-        android:clickable="false"
+
         android:text="@string/back"/>
 
     <ListView
         android:id="@+id/listview1"
-        android:descendantFocusability = "blocksDescendants"
-        android:focusable="false"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -36,8 +34,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:height="80dp"
-            android:focusable="false"
-            android:clickable="false"
+
             android:text="@string/send" />
 
         <EditText
@@ -48,7 +45,7 @@
             android:autofillHints="text"
             android:hint="@string/textType"
             android:inputType="text"
-            android:focusable="false"
+
             android:minHeight="48dp" />
 
         <Button
@@ -56,8 +53,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:height="80dp"
-            android:focusable="false"
-            android:clickable="false"
+
             android:text="@string/receive" />
     </LinearLayout>
 

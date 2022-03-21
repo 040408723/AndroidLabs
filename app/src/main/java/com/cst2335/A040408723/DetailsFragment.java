@@ -19,6 +19,7 @@ public class DetailsFragment extends Fragment {
     boolean isTablet = false;
     private static final String ARG_NUM1="param1";
     private static final String ARG_NUM2="param2";
+    int position;
 
     public DetailsFragment(){
 
@@ -38,11 +39,12 @@ public class DetailsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(savedInstanceState == null){
+            // Get back arguments
             if(getArguments() != null) {
-
-                String mParam1 = getArguments().getString(ARG_NUM1);
-                String mParam2 = getArguments().getString(ARG_NUM2);
+                position = getArguments().getInt("position", 0);
             }
+        }
     }
 
 
@@ -59,12 +61,12 @@ public class DetailsFragment extends Fragment {
 
         Bundle bundle=getArguments();
 
-        /*String message=bundle.getString("Message");
+        String message=bundle.getString("Message");
         long id=bundle.getLong("ID");
         long idChat=bundle.getLong("idChat");
 
         textview1.setText(message);
-        id1.setText(String.valueOf(id));*/
+        id1.setText(String.valueOf(id));
 
         hide.setOnClickListener(view1 -> {
             if(isTablet){
@@ -76,8 +78,9 @@ public class DetailsFragment extends Fragment {
                         .commit();
             }else{
                 Intent nextActivity=new Intent();
-                //nextActivity.putExtra("Delete ID", id);
-                //nextActivity.putExtra("idChat", idChat);
+                nextActivity.putExtra("Message", message);
+                nextActivity.putExtra("Delete ID", id);
+                nextActivity.putExtra("idChat", idChat);
                 getActivity().setResult(Activity.RESULT_OK, nextActivity);
                 getActivity().finish();
             }

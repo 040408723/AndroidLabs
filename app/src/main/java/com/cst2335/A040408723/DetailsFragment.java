@@ -59,12 +59,12 @@ public class DetailsFragment extends Fragment {
 
         Bundle bundle=getArguments();
 
-        String message=bundle.getString("Message");
+        /*String message=bundle.getString("Message");
         long id=bundle.getLong("ID");
         long idChat=bundle.getLong("idChat");
 
         textview1.setText(message);
-        id1.setText(String.valueOf(id));
+        id1.setText(String.valueOf(id));*/
 
         hide.setOnClickListener(view1 -> {
             if(isTablet){
@@ -76,8 +76,8 @@ public class DetailsFragment extends Fragment {
                         .commit();
             }else{
                 Intent nextActivity=new Intent();
-                nextActivity.putExtra("Delete ID", id);
-                nextActivity.putExtra("idChat", idChat);
+                //nextActivity.putExtra("Delete ID", id);
+                //nextActivity.putExtra("idChat", idChat);
                 getActivity().setResult(Activity.RESULT_OK, nextActivity);
                 getActivity().finish();
             }

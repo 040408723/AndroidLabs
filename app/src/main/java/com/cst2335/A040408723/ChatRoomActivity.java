@@ -146,7 +146,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
-        myListView.setOnItemClickListener((adapterView, view, position, id) -> {
+        myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
             String message=myAdapter.getItem(position).toString();
             long IdInChat=myAdapter.getItemId(position);
 
@@ -170,6 +170,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 startActivity.putExtra("ChatItem",bundle);
                 startActivity(startActivity);
             }
+            return false;
         });
 
         Button previousButton = findViewById(R.id.previousButton);

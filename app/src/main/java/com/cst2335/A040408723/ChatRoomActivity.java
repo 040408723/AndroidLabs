@@ -157,13 +157,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             if (isTablet) {
                 fragment.setArguments(bundle);
-                fragment.setIsTablet(true);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flbox1, fragment)
                         .commit();
             } else {
-                fragment.setIsTablet(false);
                 Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
                 startActivity.putExtra("ChatItem",bundle);
                 startActivity(startActivity);

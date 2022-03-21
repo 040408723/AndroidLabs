@@ -91,7 +91,4 @@ public class DetailsFragment extends Fragment {
 
         return view;
     }
-    public void setIsTablet(boolean isTablet) {
-        this.isTablet = isTablet;
-    }
 }

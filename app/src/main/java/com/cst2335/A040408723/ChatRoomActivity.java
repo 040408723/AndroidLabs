@@ -13,13 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -88,9 +86,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             String message = results.getString(messageIndex);
             int sorR = results.getInt(sOrRIndex);
 
-
             list.add(new Message(sorR>0,message,id));
-            //list.add(new Message(false, message, id));
         }
 
         sendButton = findViewById(R.id.buttonSend);
@@ -203,7 +199,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            //return list.get(position).msgType;
             return list.get(position);
         }
 
@@ -223,13 +218,9 @@ public class ChatRoomActivity extends AppCompatActivity {
                 View newView1 = inflater.inflate(R.layout.sendmessage, parent, false);
                 TextView tView=newView1.findViewById(R.id.sendmessage);
                 tView.setText(msg.msgType);
-                //EditText messageTyped = newView1.findViewById(R.id.sendmessage);
-                //messageTyped.setText(getItem(position).toString());
                 return newView1;
             } else {
                 View newView2 = inflater.inflate(R.layout.message, parent, false);
-                //EditText messageTyped = newView2.findViewById(R.id.receivemessage);
-                //messageTyped.setText(getItem(position).toString());
                 TextView tView=newView2.findViewById(R.id.receivemessage);
                 tView.setText(msg.msgType);
                 return newView2;

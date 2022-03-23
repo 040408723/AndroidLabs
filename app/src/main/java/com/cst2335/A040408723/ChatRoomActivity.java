@@ -150,6 +150,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
 
+            //get message, id and boolean from listview
             long msgID=myAdapter.getItemId(position);
             boolean isSend=list.get(position).sendOrReceive;
             String text=list.get(position).msgType;
@@ -157,6 +158,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             DetailsFragment fragment = new DetailsFragment();
             Bundle bundle=new Bundle();
 
+            //put message, id and boolean in bundle
             bundle.putString("Message",text);
             bundle.putLong("positionID", id);
             bundle.putBoolean("isSend", isSend);

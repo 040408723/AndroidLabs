@@ -20,14 +20,14 @@
 
         <ListView
             android:id="@+id/listview1"
-            android:layout_width="300dp"
+            android:layout_width="321dp"
             android:layout_height="wrap_content">
 
         </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="106dp"
             android:orientation="horizontal">
 
 
@@ -57,23 +57,15 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myRecycleView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/editText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </LinearLayout>
 
     <FrameLayout
         android:id="@+id/flbox1"
-        android:layout_width="650dp"
-        android:layout_height="1158dp"
+        android:layout_width="1060dp"
+        android:layout_height="956dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="-131dp"
         tools:ignore="NotSibling" />
 </RelativeLayout>

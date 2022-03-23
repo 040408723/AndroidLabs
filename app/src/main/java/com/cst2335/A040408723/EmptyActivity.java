@@ -20,12 +20,12 @@ public class EmptyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
 
-        Bundle bundle=getIntent().getBundleExtra("ChatItem");
+        Bundle bundle=getIntent().getBundleExtra("MessageTrans");
         DetailsFragment fragment=new DetailsFragment();
         fragment.setArguments(bundle);
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
         ft.setReorderingAllowed(true);
-        ft.replace(R.id.flbox1,fragment);
+        ft.replace(R.id.flbox2,fragment);
         ft.commit();
     }
 }

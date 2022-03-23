@@ -13,11 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -79,14 +81,16 @@ public class ChatRoomActivity extends AppCompatActivity {
         int idIndex = results.getColumnIndex(MyOpenHelper.COL_ID);
         int messageIndex = results.getColumnIndex(MyOpenHelper.COL_MESSAGE);
         int sOrRIndex = results.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+
         while (results.moveToNext()) {
 
             int id = results.getInt(idIndex);
             String message = results.getString(messageIndex);
             int sorR = results.getInt(sOrRIndex);
 
-            list.add(new Message(true, message, id));
-            list.add(new Message(false, message, id));
+
+            list.add(new Message(sorR>0,message,id));
+            //list.add(new Message(false, message, id));
         }
 
         sendButton = findViewById(R.id.buttonSend);
@@ -101,7 +105,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             ContentValues newRow = new ContentValues();
             newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
-            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, true);
             long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
 
             Message newMsg = new Message(true, typeText, id);
@@ -116,7 +120,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             ContentValues newRow = new ContentValues();
             newRow.put(MyOpenHelper.COL_MESSAGE, typeText);
-            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, 1);
+            newRow.put(MyOpenHelper.COL_SEND_RECEIVE, false);
             long id = theDatabase.insert(MyOpenHelper.TABLE_NAME, null, newRow);
 
             Message newMsg = new Message(false, typeText, id);
@@ -145,26 +149,32 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
-            String message=myAdapter.getItem(position).toString();
+            //String text=myAdapter.getItem(position).toString();
             long msgID=myAdapter.getItemId(position);
+            boolean isSend=list.get(position).sendOrReceive;
+            String text=list.get(position).msgType;
 
             DetailsFragment fragment = new DetailsFragment();
             Bundle bundle=new Bundle();
 
-            bundle.putString("Message",message);
-            bundle.putLong("ID", id);
+            bundle.putString("Message",text);
+            bundle.putLong("positionID", id);
             bundle.putLong("MessageID", msgID);
+            bundle.putBoolean("isSend", isSend);
+            fragment.setArguments(bundle);
 
             if (isTablet) {
-                fragment.setArguments(bundle);
+                //fragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flbox1, fragment)
                         .commit();
             } else {
-                Intent startActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
-                startActivity.putExtra("ChatItem",bundle);
-                startActivity(startActivity);
+                //fragment.setArguments(bundle);
+                Intent intent1 = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                intent1.putExtra("MessageTrans",bundle);
+                startActivity(intent1);
+
             }
             return false;
         });
@@ -191,7 +201,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return list.get(position).msgType;
+            //return list.get(position).msgType;
+            return list.get(position);
         }
 
         @Override
@@ -204,15 +215,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             LayoutInflater inflater = getLayoutInflater();
 
+            Message msg=(Message)getItem(position);
+
             if (list.get(position).isSendOrReceive()) {
                 View newView1 = inflater.inflate(R.layout.sendmessage, parent, false);
-                EditText messageTyped = newView1.findViewById(R.id.sendmessage);
-                messageTyped.setText(getItem(position).toString());
+                TextView tView=newView1.findViewById(R.id.sendmessage);
+                tView.setText(msg.msgType);
+                //EditText messageTyped = newView1.findViewById(R.id.sendmessage);
+                //messageTyped.setText(getItem(position).toString());
                 return newView1;
             } else {
                 View newView2 = inflater.inflate(R.layout.message, parent, false);
-                EditText messageTyped = newView2.findViewById(R.id.receivemessage);
-                messageTyped.setText(getItem(position).toString());
+                //EditText messageTyped = newView2.findViewById(R.id.receivemessage);
+                //messageTyped.setText(getItem(position).toString());
+                TextView tView=newView2.findViewById(R.id.receivemessage);
+                tView.setText(msg.msgType);
                 return newView2;
             }
         }

@@ -164,7 +164,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             bundle.putBoolean("isSend", isSend);
 
             fragment.setArguments(bundle);
-
+            //go to next activity
             if (isTablet) {
 
                 getSupportFragmentManager()

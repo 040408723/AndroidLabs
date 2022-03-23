@@ -149,7 +149,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
         myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
-            //String text=myAdapter.getItem(position).toString();
+
             long msgID=myAdapter.getItemId(position);
             boolean isSend=list.get(position).sendOrReceive;
             String text=list.get(position).msgType;
@@ -159,18 +159,18 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             bundle.putString("Message",text);
             bundle.putLong("positionID", id);
-            bundle.putLong("MessageID", msgID);
             bundle.putBoolean("isSend", isSend);
+
             fragment.setArguments(bundle);
 
             if (isTablet) {
-                //fragment.setArguments(bundle);
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flbox1, fragment)
                         .commit();
             } else {
-                //fragment.setArguments(bundle);
+
                 Intent intent1 = new Intent(ChatRoomActivity.this, EmptyActivity.class);
                 intent1.putExtra("MessageTrans",bundle);
                 startActivity(intent1);

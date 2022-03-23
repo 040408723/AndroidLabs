@@ -21,41 +21,7 @@ import android.widget.TextView;
 public class DetailsFragment extends Fragment {
 
     boolean isTablet = false;
-    private static final String ARG_NUM1="param1";
-    private static final String ARG_NUM2="param2";
-    int position;
-    boolean isSend;
     private Bundle bundle;
-
-    public DetailsFragment(){
-
-    }
-
-    public static DetailsFragment newInstance(String param1, String param2){
-        DetailsFragment fragment=new DetailsFragment();
-        Bundle args=new Bundle();
-        args.putString(ARG_NUM1, param1);
-        args.putString(ARG_NUM2,param2);
-        fragment.setArguments(args);
-        return fragment;
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if(savedInstanceState == null){
-            // Get back arguments
-            if(getArguments() != null) {
-                position = getArguments().getInt("position", 0);
-                //String mParam1=getArguments().getString(ARG_NUM1);
-                //String mParam2=getArguments().getString(ARG_NUM2);
-            }
-        }
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,14 +34,10 @@ public class DetailsFragment extends Fragment {
         CheckBox checkbox1 = view.findViewById(R.id.checkboxmsg);
         Button hide = view.findViewById(R.id.hide);
 
-
         bundle = getArguments();
 
-
-        //assert bundle != null;
         String message = bundle.getString("Message");
         long id = bundle.getLong("positionID");
-        long msgID = bundle.getLong("MessageID");
         boolean isSend=bundle.getBoolean("isSend");
 
         textview1.setText(message);
@@ -99,7 +61,6 @@ public class DetailsFragment extends Fragment {
                     Intent nextActivity = new Intent();
                     nextActivity.putExtra("Message", message);
                     nextActivity.putExtra("positionID", id);
-                    nextActivity.putExtra("MessageID", msgID);
                     getActivity().setResult(Activity.RESULT_OK, nextActivity);
                     getActivity().finish();
                 }

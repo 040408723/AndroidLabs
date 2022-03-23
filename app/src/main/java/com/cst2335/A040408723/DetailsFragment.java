@@ -55,11 +55,8 @@ public class DetailsFragment extends Fragment {
                             .remove(getParentFragment())
                             .commit();
                 } else {
-                    Intent nextActivity = new Intent();
-                    nextActivity.putExtra("Message", message);
-                    nextActivity.putExtra("positionID", id);
-                    getActivity().setResult(Activity.RESULT_OK, nextActivity);
                     getActivity().finish();
+
                 }
             });
 

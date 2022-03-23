@@ -43,6 +43,7 @@ public class DetailsFragment extends Fragment {
         textview1.setText(message);
         id1.setText(String.valueOf(id));
 
+
         if(isSend){
             checkbox1.setChecked(true);
         }else{

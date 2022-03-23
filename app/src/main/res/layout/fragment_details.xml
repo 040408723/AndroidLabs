@@ -21,9 +21,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="408dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="456dp"
             android:text="@string/hello_blank_fragment" />
 
         <TextView
@@ -33,9 +33,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="197dp"
-            android:layout_marginEnd="-5dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="276dp"
+            android:layout_marginEnd="-2dp"
             android:text="@string/id_fragment" />
 
         <CheckBox
@@ -47,22 +47,23 @@
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="-2dp"
-            android:layout_marginTop="245dp"
+            android:layout_marginTop="324dp"
             android:layout_marginEnd="-1dp"
             android:text="is a send message" />
+
+        <Button
+            android:id="@+id/hide"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="464dp"
+            android:layout_marginEnd="-2dp"
+            android:text="@string/buttonhide" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/hide"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="388dp"
-        android:layout_marginEnd="-1dp"
-        android:text="@string/buttonhide" />
 </FrameLayout>
 
 

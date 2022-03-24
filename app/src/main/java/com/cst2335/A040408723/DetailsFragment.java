@@ -29,6 +29,7 @@ public class DetailsFragment extends Fragment {
         Button hide = view.findViewById(R.id.hide);
 
         bundle = getArguments();
+
         //fetch the message, id, and boolean info back from bundle
         String message = bundle.getString("Message");
         long id = bundle.getLong("positionID");

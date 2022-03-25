@@ -144,7 +144,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             return true;
         });
 
-        myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
+        myListView.setOnItemClickListener((adapterView, view, position, id) -> {
 
             //get message, id and boolean from listview
             //long msgID=myAdapter.getItemId(position);
@@ -175,7 +175,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 startActivity(intent1);
 
             }
-            return false;
+            //return false;
         });
 
         Button previousButton = findViewById(R.id.previousButton);

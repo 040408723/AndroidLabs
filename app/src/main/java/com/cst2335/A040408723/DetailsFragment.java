@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,18 +52,19 @@ public class DetailsFragment extends Fragment {
         //hide button function
             hide.setOnClickListener(view1 -> {
                 if (isTablet) {
-                    ChatRoomActivity chat = (ChatRoomActivity) getActivity();
+                    DetailsFragment fragment=new DetailsFragment();
 
-                    chat.getSupportFragmentManager()
+                    //getActivity().onBackPressed();
+                    //getActivity().getSupportFragmentManager().popBackStack();
+
+                    getFragmentManager()
                             .beginTransaction()
-                            .remove(getParentFragment())
+                            .replace(R.id.flbox1,fragment)
                             .commit();
-                } else {
+
+                    }
                     getActivity().finish();
-
-                }
             });
-
             return view;
         }
     }

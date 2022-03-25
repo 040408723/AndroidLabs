@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         EditText emailEditText=findViewById(R.id.email22);
         emailEditText.setText(emailInfo);
 
-        Button b=findViewById(R.id.toolbar);
+        Button b=findViewById(R.id.toolbar1);
         b.setOnClickListener(v->{
             Intent goToToolBar=new Intent(ProfileActivity.this,TestToolbar.class);
             startActivity(goToToolBar);

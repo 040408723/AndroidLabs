@@ -86,4 +86,13 @@
         android:layout_below="@+id/button22"
         android:id="@+id/button1"/>
 
+    <Button
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/button22"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="87dp"
+        android:text="go to toolbar"/>
+
 </RelativeLayout>

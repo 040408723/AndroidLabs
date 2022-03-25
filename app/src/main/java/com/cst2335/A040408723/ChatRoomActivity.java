@@ -3,6 +3,8 @@ package com.cst2335.A040408723;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -33,10 +35,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button sendButton;
     Button receiveButton;
     EditText typeMessage;
-
+public static boolean isTablet;
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
-
+public static FragmentManager fragmentManager;
     public class Message {
 
         private String msgType;
@@ -68,7 +70,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_chat_room);
 
-        boolean isTablet = findViewById(R.id.flbox1) != null;
+        isTablet = findViewById(R.id.flbox1) != null;
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
@@ -160,11 +162,11 @@ public class ChatRoomActivity extends AppCompatActivity {
             bundle.putBoolean("isSend", isSend);
 
             fragment.setArguments(bundle);
-
+            fragmentManager=getSupportFragmentManager();
             //go to next activity
             if (isTablet) {
 
-                getSupportFragmentManager()
+                fragmentManager
                         .beginTransaction()
                         .replace(R.id.flbox1, fragment)
                         .commit();

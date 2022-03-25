@@ -147,7 +147,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         myListView.setOnItemLongClickListener((adapterView, view, position, id) -> {
 
             //get message, id and boolean from listview
-            long msgID=myAdapter.getItemId(position);
+            //long msgID=myAdapter.getItemId(position);
             boolean isSend=list.get(position).sendOrReceive;
             String text=list.get(position).msgType;
 

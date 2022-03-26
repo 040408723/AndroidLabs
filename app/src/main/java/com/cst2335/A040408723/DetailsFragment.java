@@ -49,7 +49,13 @@ public class DetailsFragment extends Fragment {
         //hide button function
             hide.setOnClickListener(view1 -> {
                 if (ChatRoomActivity.isTablet) {
-                    ChatRoomActivity.fragmentManager.beginTransaction().remove(this).commit();
+
+                    ChatRoomActivity
+                            .fragmentManager
+                            .beginTransaction()
+                            .remove(this)
+                            .commit();
+
 //                    getActivity().onBackPressed();
 //                    getActivity().getSupportFragmentManager().popBackStack();
 //

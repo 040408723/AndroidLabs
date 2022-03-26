@@ -46,11 +46,11 @@ public class TestToolbar extends AppCompatActivity {
             case R.id.bridge_item:
                 message = "You clicked on item 3";
                 break;
-            case R.id.call_item:
+            /*case R.id.call_item:
                 message = "You clicked on call";
                 Intent i = new Intent (getApplicationContext(), ChatRoomActivity.class);
                 startActivity(i);
-                break;
+                break;*/
         }
         if ( message != null ) {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();

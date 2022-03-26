@@ -32,16 +32,13 @@ public class ChatRoomActivity extends AppCompatActivity {
     MyOpenHelper myOpener;
     SQLiteDatabase theDatabase;
 
-    public static FragmentManager fragmentManager;
-    public static boolean isTablet;
-
     Button sendButton;
     Button receiveButton;
     EditText typeMessage;
-
+    public static boolean isTablet;
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
-
+    public static FragmentManager fragmentManager;
     public class Message {
 
         private String msgType;
@@ -73,7 +70,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_chat_room);
 
-        boolean isTablet = findViewById(R.id.flbox1) != null;
+        isTablet = findViewById(R.id.flbox1) != null;
 
         myOpener = new MyOpenHelper(this);
         theDatabase = myOpener.getWritableDatabase();
@@ -165,11 +162,11 @@ public class ChatRoomActivity extends AppCompatActivity {
             bundle.putBoolean("isSend", isSend);
 
             fragment.setArguments(bundle);
-
+            fragmentManager=getSupportFragmentManager();
             //go to next activity
             if (isTablet) {
 
-                getSupportFragmentManager()
+                fragmentManager
                         .beginTransaction()
                         .replace(R.id.flbox1, fragment)
                         .commit();
@@ -180,7 +177,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 startActivity(intent1);
 
             }
-
+            //return false;
         });
 
         Button previousButton = findViewById(R.id.previousButton);
@@ -235,36 +232,36 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-        public void printCursor (Cursor c,int version){
+    public void printCursor (Cursor c,int version){
 
-            int numberColumns = c.getColumnCount();
-            String[] nameColumns = c.getColumnNames();
-            int numberRows = c.getCount();
+        int numberColumns = c.getColumnCount();
+        String[] nameColumns = c.getColumnNames();
+        int numberRows = c.getCount();
 
-            c.moveToFirst();
+        c.moveToFirst();
 
-            while (!c.isAfterLast()) {
+        while (!c.isAfterLast()) {
 
-                int typeIndex = c.getColumnIndex(MyOpenHelper.COL_MESSAGE);
-                int idColIndex = c.getColumnIndex(MyOpenHelper.COL_ID);
-                int sOrRColIndex=c.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
+            int typeIndex = c.getColumnIndex(MyOpenHelper.COL_MESSAGE);
+            int idColIndex = c.getColumnIndex(MyOpenHelper.COL_ID);
+            int sOrRColIndex=c.getColumnIndex(MyOpenHelper.COL_SEND_RECEIVE);
 
-                String type = c.getString(typeIndex);
-                long id = c.getLong(idColIndex);
-                int sOrR=c.getInt(sOrRColIndex);
+            String type = c.getString(typeIndex);
+            long id = c.getLong(idColIndex);
+            int sOrR=c.getInt(sOrRColIndex);
 
-                String rowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
-                Log.i("ROW OF RESULTS", rowValues );
+            String rowValues=String.format("ID="+id+", Message="+type+", SendOrReceive="+sOrR);
+            Log.i("ROW OF RESULTS", rowValues );
 
-                c.moveToNext();
-            }
-
-            Log.i("DATABASE VERSION NUMBER: ", Integer.toString(version));
-            Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberColumns));
-            Log.i("COLUMN NAMES: ", Arrays.toString(nameColumns));
-            Log.i("NUMBER OF ROWS: ", Integer.toString(numberRows));
-
+            c.moveToNext();
         }
+
+        Log.i("DATABASE VERSION NUMBER: ", Integer.toString(version));
+        Log.i("NUMBER OF COLUMNS: ", Integer.toString(numberColumns));
+        Log.i("COLUMN NAMES: ", Arrays.toString(nameColumns));
+        Log.i("NUMBER OF ROWS: ", Integer.toString(numberRows));
+
+    }
 
 }
 

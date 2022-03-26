@@ -5,26 +5,45 @@
     <item
         android:id="@+id/airport_item"
         android:icon="@drawable/airport"
-        android:orderInCategory="300"
+        android:orderInCategory="1"
         android:title="@string/airport"
-        app:showAsAction="ifRoom" />  <!-- This uses showAsAction=always, so look at icon= parameter -->
+        app:showAsAction="always" />
 
 
     <item
         android:id="@+id/bridge_item"
-        android:icon="@android:drawable/ic_search_category_default"
-        android:orderInCategory="50"
+        android:icon="@drawable/bridge"
+        android:orderInCategory="2"
         android:title="@string/bridge"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always|collapseActionView" />    <!-- This uses showAsAction=always, so look at icon= parameter -->
+        app:showAsAction="always" />
 
 
     <item
         android:id="@+id/jumper_item"
-        android:icon="@android:drawable/ic_menu_help"
-        android:orderInCategory="200"
+        android:icon="@drawable/jumper"
+        android:orderInCategory="3"
         android:title="@string/jumper"
-        app:showAsAction="ifRoom" /> <!-- This uses showAsAction=never, so look at title= parameter -->
+        app:showAsAction="always" />
 
-
+    <item
+        android:id="@+id/embassy_item"
+        android:icon="@drawable/embassy"
+        android:orderInCategory="4"
+        android:title="@string/embassy"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/chatroom_item"
+        android:title="@string/chatroom"
+        android:orderInCategory="5"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/weather_item"
+        android:title="@string/weather"
+        android:orderInCategory="6"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/goback_item"
+        android:title="@string/goback"
+        android:orderInCategory="7"
+        app:showAsAction="never"/>
 </menu>

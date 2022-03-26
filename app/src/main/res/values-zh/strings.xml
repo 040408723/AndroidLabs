@@ -24,5 +24,11 @@
     <string name="airport">jichang</string>
     <string name="bridge">qiao</string>
     <string name="jumper">maoyi</string>
+    <string name="embassy">shiguan</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="chatroom">chat page</string>
+    <string name="weather">Weather Forcast</string>
+    <string name="goback">go back to log in</string>
 
 </resources>

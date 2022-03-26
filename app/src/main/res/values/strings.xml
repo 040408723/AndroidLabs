@@ -24,5 +24,11 @@
     <string name="airport">airport</string>
     <string name="bridge">bridge</string>
     <string name="jumper">jumper</string>
+    <string name="embassy">embassy</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="chatroom">chat page</string>
+    <string name="weather">Weather Forcast</string>
+    <string name="goback">go back to log in</string>
 
 </resources>

@@ -23,6 +23,6 @@
     <string name="buttonhide">hide</string>
     <string name="airport">airport</string>
     <string name="bridge">bridge</string>
-    <string name="gas">gas</string>
+    <string name="jumper">jumper</string>
 
 </resources>

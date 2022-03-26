@@ -40,7 +40,7 @@ public class TestToolbar extends AppCompatActivity {
             case R.id.airport_item:
                 message = "You clicked on item 1";
                 break;
-            case R.id.gas_item:
+            case R.id.jumper_item:
                 message = "You clicked on item 2";
                 break;
             case R.id.bridge_item:

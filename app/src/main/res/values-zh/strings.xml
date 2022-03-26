@@ -20,7 +20,9 @@
     <string name="back">fan hui</string>
     <string name="hello_blank_fragment">xinxi zai zheli</string>
     <string name="id_fragment">ID=</string>
-
     <string name="buttonhide">yicang</string>
+    <string name="airport">jichang</string>
+    <string name="bridge">qiao</string>
+    <string name="gas">you</string>
 
 </resources>

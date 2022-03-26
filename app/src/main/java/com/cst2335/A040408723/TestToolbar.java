@@ -17,7 +17,7 @@ public class TestToolbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_toolbar);
 
-        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar tBar = findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
     }
 
@@ -25,7 +25,7 @@ public class TestToolbar extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-       // inflater.inflate(R.menu.activity_menu, menu);
+        inflater.inflate(R.menu.activity_menu, menu);
         return true;
     }
 
@@ -40,10 +40,10 @@ public class TestToolbar extends AppCompatActivity {
             case R.id.airport_item:
                 message = "You clicked on item 1";
                 break;
-            case R.id.gasstation_item:
+            case R.id.gas_item:
                 message = "You clicked on item 2";
                 break;
-            case R.id.twitter_item:
+            case R.id.bridge_item:
                 message = "You clicked on item 3";
                 break;
             case R.id.call_item:

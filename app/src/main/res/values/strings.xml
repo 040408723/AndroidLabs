@@ -20,8 +20,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Message Here</string>
     <string name="id_fragment">ID=</string>
-
     <string name="buttonhide">hide</string>
-
+    <string name="airport">airport</string>
+    <string name="bridge">bridge</string>
+    <string name="gas">gas</string>
 
 </resources>

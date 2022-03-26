@@ -3,6 +3,8 @@ package com.cst2335.A040408723;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -29,6 +31,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     MyOpenHelper myOpener;
     SQLiteDatabase theDatabase;
+
+    public static FragmentManager fragmentManager;
+    public static boolean isTablet;
 
     Button sendButton;
     Button receiveButton;

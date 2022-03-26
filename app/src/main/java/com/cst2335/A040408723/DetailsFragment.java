@@ -48,16 +48,18 @@ public class DetailsFragment extends Fragment {
 
         //hide button function
             hide.setOnClickListener(view1 -> {
-                if (isTablet) {
-                    ChatRoomActivity chat = (ChatRoomActivity) getActivity();
-
-                    chat.getSupportFragmentManager()
-                            .beginTransaction()
-                            .remove(getParentFragment())
-                            .commit();
+                if (ChatRoomActivity.isTablet) {
+                    ChatRoomActivity.fragmentManager.beginTransaction().remove(this).commit();
+//                    getActivity().onBackPressed();
+//                    getActivity().getSupportFragmentManager().popBackStack();
+//
+//                    DetailsFragment fragment=new DetailsFragment();
+//                    getChildFragmentManager()
+//                            .beginTransaction()
+//                            .replace(R.id.flbox1,fragment)
+//                            .commit();
                 } else {
                     getActivity().finish();
-
                 }
             });
 

@@ -17,10 +17,6 @@
     <string name="send">fa</string>
     <string name="textType">qiao zheli</string>
     <string name="receive">shou</string>
-    <string name="sendMessage">fa xinxi</string>
-    <string name="sendPerson">fajian ren</string>
-    <string name="receivePerson">shoujian ren</string>
-    <string name="receiveMessage">shou xinxi</string>
     <string name="back">fan hui</string>
     <string name="hello_blank_fragment">xinxi zai zheli</string>
     <string name="id_fragment">ID=</string>

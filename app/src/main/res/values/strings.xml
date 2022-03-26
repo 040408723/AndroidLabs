@@ -16,10 +16,6 @@
     <string name="send">send</string>
     <string name="textType">Type here</string>
     <string name="receive">Receive</string>
-    <string name="sendMessage">send message</string>
-    <string name="sendPerson">send person</string>
-    <string name="receivePerson">receive person</string>
-    <string name="receiveMessage">receive message</string>
     <string name="back">back</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Message Here</string>

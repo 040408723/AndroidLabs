@@ -23,7 +23,6 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/receive"
         android:layout_width="91dp"
         android:layout_height="43dp"
         android:paddingEnd="0dp"

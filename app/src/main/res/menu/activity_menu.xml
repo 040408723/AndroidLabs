@@ -31,19 +31,5 @@
         android:orderInCategory="4"
         android:title="@string/embassy"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/chatroom_item"
-        android:title="@string/chatroom"
-        android:orderInCategory="5"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/weather_item"
-        android:title="@string/weather"
-        android:orderInCategory="6"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/goback_item"
-        android:title="@string/goback"
-        android:orderInCategory="7"
-        app:showAsAction="never"/>
+
 </menu>

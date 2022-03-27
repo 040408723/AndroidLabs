@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chatroom_item"
+        android:title="@string/chatroom"
+        android:orderInCategory="5"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/weather_item"
+        android:title="@string/weather"
+        android:orderInCategory="6"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/goback_item"
+        android:title="@string/goback"
+        android:orderInCategory="7"
+        app:showAsAction="never"/>
+
+</menu>

@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -83,15 +84,17 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
                 startActivity(c);
                 break;
             case R.id.weather_item:
-                Intent w = new Intent ();
+                Uri uri=Uri.parse("http://www.theweathernetwork.com");
+                Intent w = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(w);
                 break;
             case R.id.goback_item:
-                Intent g = new Intent();
+                finish();
                 break;
         }
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
 
-        return false;
+       return false;
     }
 }

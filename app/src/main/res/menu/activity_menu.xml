@@ -28,8 +28,8 @@
     <item
         android:id="@+id/embassy_item"
         android:icon="@drawable/embassy"
-        android:orderInCategory="4"
+        android:orderInCategory="60"
         android:title="@string/embassy"
-        app:showAsAction="never" />
+        />
 
 </menu>

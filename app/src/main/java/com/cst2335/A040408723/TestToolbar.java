@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -89,7 +90,11 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
                 startActivity(w);
                 break;
             case R.id.goback_item:
-                finish();
+                //finish();
+                Intent intent=new Intent(TestToolbar.this,MainActivity.class);
+                startActivity(intent);
+                //setResult(Activity.RESULT_OK);
+                //onBackPressed();
                 break;
         }
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);

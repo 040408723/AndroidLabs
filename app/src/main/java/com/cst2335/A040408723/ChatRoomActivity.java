@@ -39,6 +39,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     ArrayList<Message> list = new ArrayList<>();
     MyListAdapter myAdapter;
     public static FragmentManager fragmentManager;
+
     public class Message {
 
         private String msgType;
@@ -60,8 +61,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
     }
-
-    //boolean isTablet = false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override

@@ -92,7 +92,7 @@ public class TestToolbar extends AppCompatActivity implements NavigationView.OnN
             case R.id.goback_item:
                 //finish();
                 Intent intent=new Intent(TestToolbar.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 //setResult(Activity.RESULT_OK);
